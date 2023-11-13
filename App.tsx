@@ -1,5 +1,9 @@
-import { Text, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
+import { NativeBaseProvider } from 'native-base';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { THEME } from './src/theme';
+import { Loading } from '@components/Loading';
+import { SignIn } from '@screens/SignIn';
 
 export default function App() {
 
@@ -9,12 +13,17 @@ export default function App() {
   })
 
   return (
+    <NativeBaseProvider theme={THEME}>
+      <StatusBar
 
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
-      {fontsLoaded ? <Text >Hello world!</Text> : <View />}
+      {fontsLoaded ? <SignIn /> : <Loading />}
 
-    </View>
+    </NativeBaseProvider>
   );
 }
 
