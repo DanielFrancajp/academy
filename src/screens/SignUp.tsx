@@ -1,24 +1,19 @@
 import { useNavigation } from '@react-navigation/native'
-import { VStack, Center, Image, Text, Heading, ScrollView } from 'native-base';
 
-import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import { VStack, Center, Image, Text, Heading, ScrollView } from 'native-base';
 
 import LogoSvg from '@assets/logo.svg';
 import BackGroundImg from '@assets/background.png';
-
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 
+export function SignUp() {
 
-export function SignIn() {
+    const navigation = useNavigation();
 
-    const navigation = useNavigation<AuthNavigatorRoutesProps>();
-
-    function handleNewAccount() {
-        navigation.navigate('signUp')
+    function handleGoBack(){
+        navigation.goBack();
     }
-
-
     return (
         <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
@@ -42,8 +37,12 @@ export function SignIn() {
 
                 <Center>
                     <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
-                        Acecsse sua conta
+                        Crie sua conta
                     </Heading>
+
+                    <Input
+                        placeholder='Nome'
+                    />
 
                     <Input
                         placeholder='E-mail'
@@ -55,21 +54,17 @@ export function SignIn() {
                         secureTextEntry
                     />
                     <Button
-                        title='Acessar'
+                        title='Criar e acessar'
                     />
 
                 </Center>
 
-                <Center mt={24}>
-                    <Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">
-                        Ainda não tem acesso?
-                    </Text>
 
-                </Center>
                 <Button
-                    title='Criar conta'
+                    title='Voltar para o login'
                     variant="outline"
-                    onPress={handleNewAccount}
+                    mt={24}
+                    onPress={handleGoBack}
                 />
             </VStack>
         </ScrollView>
